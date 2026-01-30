@@ -36,7 +36,7 @@ def create_loss_and_optimizer(model):
     """
     # TODO: Implement
     loss_fn = nn.MSELoss()
-    optimizer = torch.optim.SGD(model.parameters(), lr=0.01, momentum = 0.9)
+    optimizer = torch.optim.Adam(model.parameters(), lr=0.01, momentum = 0.9)
     return loss_fn, optimizer
 
     # raise NotImplementedError
