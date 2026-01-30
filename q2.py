@@ -17,13 +17,8 @@ class LinearRegression(nn.Module):
 
     def forward(self, x):
         # TODO: Implement
-        
-        loss_fn, optimizer = create_loss_and_optimizer(self)
-        
-        
-
-
-
+        output = self.linear(x)
+        return output
         # raise NotImplementedError
 
 def create_loss_and_optimizer(model):
@@ -40,8 +35,11 @@ def create_loss_and_optimizer(model):
             The optimizer for the model
     """
     # TODO: Implement
+    loss_fn = nn.MSELoss()
+    optimizer = torch.optim.SGD(model.parameters(), lr:0.01, momentum = 0.9)
+    return loss_fn, optimizer
 
-    raise NotImplementedError
+    # raise NotImplementedError
 
 def train(x, y, model, loss_fn, optimizer, checkpoint_path, num_epochs=1000):
     """Train a model.
@@ -66,7 +64,24 @@ def train(x, y, model, loss_fn, optimizer, checkpoint_path, num_epochs=1000):
         - Save the best performing model checkpoint to `checkpoint_path`
     """
     # TODO: Implement
-    raise NotImplementedError
+
+    best_model = model
+    best_loss = float('inf')
+
+    for i in range(num_epochs):
+        optimizer.zero_grad()
+
+        output = model(x)
+        loss = loss_fn(output, y)
+        loss.backward()
+        optimizer.step()
+
+        if loss<best_loss:
+            best_loss = loss
+            best_model = model 
+
+    torch.save(best_model, checkpoint_path)
+    # raise NotImplementedError
 
 def load_model_checkpoint(checkpoint_path):
     """Load a model checkpoint from disk.
@@ -80,5 +95,7 @@ def load_model_checkpoint(checkpoint_path):
             The model loaded from the checkpoint
     """
     # TODO: Implement
-    raise NotImplementedError
+    # raise NotImplementedError
+
+    return torch.load(checkpoint_path)
     
