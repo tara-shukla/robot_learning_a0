@@ -17,7 +17,14 @@ class LinearRegression(nn.Module):
 
     def forward(self, x):
         # TODO: Implement
-        raise NotImplementedError
+        
+        loss_fn, optimizer = create_loss_and_optimizer(self)
+        
+        
+
+
+
+        # raise NotImplementedError
 
 def create_loss_and_optimizer(model):
     """Create and return a loss function and optimizer.
@@ -33,6 +40,7 @@ def create_loss_and_optimizer(model):
             The optimizer for the model
     """
     # TODO: Implement
+
     raise NotImplementedError
 
 def train(x, y, model, loss_fn, optimizer, checkpoint_path, num_epochs=1000):
