@@ -36,7 +36,7 @@ def create_loss_and_optimizer(model):
     """
     # TODO: Implement
     loss_fn = nn.MSELoss()
-    optimizer = torch.optim.SGD(model.parameters(), lr:0.01, momentum = 0.9)
+    optimizer = torch.optim.SGD(model.parameters(), lr=0.01, momentum = 0.9)
     return loss_fn, optimizer
 
     # raise NotImplementedError
@@ -78,9 +78,7 @@ def train(x, y, model, loss_fn, optimizer, checkpoint_path, num_epochs=1000):
 
         if loss<best_loss:
             best_loss = loss
-            best_model = model 
-
-    torch.save(best_model, checkpoint_path)
+            torch.save(model.state_dict(), checkpoint_path)
     # raise NotImplementedError
 
 def load_model_checkpoint(checkpoint_path):
